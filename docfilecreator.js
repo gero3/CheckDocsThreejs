@@ -15,5 +15,4 @@ function getFiles (dir, files_){
     return files_;
 }
 
-fs.writeFileSync("files.json", JSON.stringify(getFiles("./en"),null,4));
-console.log(getFiles("./en"))
+fs.writeFileSync("files.json", JSON.stringify(getFiles("./three.js/docs/api/en"),null,4));
