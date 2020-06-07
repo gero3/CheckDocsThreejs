@@ -16,3 +16,8 @@ function getFiles (dir, files_){
 }
 
 fs.writeFileSync("files.json", JSON.stringify(getFiles("./three.js/docs/api/en"),null,4));
+
+
+var threejsfile = fs.readFileSync("./three.js/src/Three.js","utf8");
+
+fs.writeFileSync("./three.js/src/Three.js",threejsfile.replace("export * from './Three.Legacy.js';", "//export * from './Three.Legacy.js';"));
