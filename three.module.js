@@ -49029,7 +49029,7 @@ vec4 envMapTexelToLinear(vec4 color) {
 
 }
 
-////////export * from './Three.Legacy.js';
+//export * from './Three.Legacy.js';
 
 if ( typeof __THREE_DEVTOOLS__ !== 'undefined' ) {
 
