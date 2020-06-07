@@ -1,6 +1,9 @@
 <html>
     <head>
         <style>
+            .hide {
+                display: none;
+            }
             td {
                 vertical-align: top;
                 text-align: left;
@@ -8,7 +11,7 @@
         </style>
     </head>
     <body>
-        <table>
+        <table class="hide">
             <tr>
                 <th>Constructor</th> 
                 <th>Functions</th> 
@@ -22,14 +25,20 @@
                 <td><ul id="Others"></ul></td>               
             </tr>
         </table>
+        <ul id="files"></ul>
         <script type="module">
             import * as THREE from 'https://unpkg.com/three/build/three.module.js'
+
+
+
+            var possibleconstructors = [];
 
 
             var constantList = document.getElementById("ConstantList");
             var functionList = document.getElementById("FunctionList");
             var constructorList = document.getElementById("ConstructorList");
             var others = document.getElementById("Others");
+            var fileselement = document.getElementById("files");
             function parse(object, prefix, index){
                 for (var property in object) {
                     var type = typeof object[property];
@@ -58,6 +67,8 @@
                         }
 
                         constructorList.appendChild(li);
+                        possibleconstructors.push(propertyName);
+
                     } else if (type === "function"){
                         li.innerHTML = propertyName ; 
                         functionList.appendChild(li);
@@ -72,6 +83,32 @@
                 }
             }
             parse(THREE,"", 1)
+
+            let request = new XMLHttpRequest();
+            request.open('GET', "files.json");
+            request.responseType = 'json';
+            request.send();
+
+            request.onload = function() {
+                const files = request.response;
+
+                possibleconstructors.forEach(c=> {
+                    var file =files.find(f => f.endsWith(c + ".html"));
+                    if (!file){
+                        var li = document.createElement("li");
+                        li.innerHTML = c ; 
+                        fileselement.appendChild(li);
+                    }
+                });
+
+                // files.forEach(file => {
+                    
+                //     var li = document.createElement("li");
+                //     li.innerHTML = file ; 
+                //     fileselement.appendChild(li);
+                // });
+
+            }
 
         </script>
     </body>
