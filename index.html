@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <style>
+            td {
+                vertical-align: top;
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Constructor</th> 
+                <th>Functions</th> 
+                <th>Constants</th> 
+                <th>Others</th> 
+            </tr>
+            <tr>
+                <td><ul id="ConstructorList"></ul></td>
+                <td><ul id="FunctionList"></ul></td>
+                <td><ul id="ConstantList"></ul></td>
+                <td><ul id="Others"></ul></td>               
+            </tr>
+        </table>
+        <script type="module">
+            import * as THREE from 'https://unpkg.com/three/build/three.module.js'
+
+
+            var constantList = document.getElementById("ConstantList");
+            var functionList = document.getElementById("FunctionList");
+            var constructorList = document.getElementById("ConstructorList");
+            var others = document.getElementById("Others");
+            function parse(object, prefix, index){
+                for (var property in object) {
+                    var type = typeof object[property];
+                    var li = document.createElement("li");
+                    var propertyName;
+                    if (prefix === "") {
+                        propertyName= property;
+                    } else {
+                        propertyName = prefix + "." + property;
+                    }
+                    if (type === "number") {
+                        li.innerHTML = propertyName + " (" + object[property] + ")" ; 
+                        constantList.appendChild(li);
+                    } else if (type === "string") {
+                        var value = object[property]
+                        if(value.length > 20) {
+                            value = value.substr(0, 20);
+                            value += "..."
+                        }
+                        li.innerHTML = propertyName + " (\"" + value + "\")" ; 
+                        constantList.appendChild(li);
+                    } else if (type === "function" && index === 1){
+                        li.innerHTML = propertyName ; 
+                        if (object[property].toString().includes("this")){
+                            li.innerHTML += " (this found)"                        
+                        }
+
+                        constructorList.appendChild(li);
+                    } else if (type === "function"){
+                        li.innerHTML = propertyName ; 
+                        functionList.appendChild(li);
+                    } else if (type === "object"){
+                        parse(THREE[property], propertyName, index + 1);
+                    } else {
+                        var li = document.createElement("li");
+                        li.innerHTML = propertyName + " (" + (typeof object[property])+ ")" ; 
+                        others.appendChild(li);
+
+                    }
+                }
+            }
+            parse(THREE,"", 1)
+
+        </script>
+    </body>
+</html>
