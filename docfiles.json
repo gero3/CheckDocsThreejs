@@ -217,6 +217,7 @@
     "./three.js/docs/api/en/renderers/webgl/WebGLProgram.html",
     "./three.js/docs/api/en/renderers/webgl/WebGLShader.html",
     "./three.js/docs/api/en/renderers/webgl/WebGLState.html",
+    "./three.js/docs/api/en/renderers/WebGL1Renderer.html",
     "./three.js/docs/api/en/renderers/WebGLCubeRenderTarget.html",
     "./three.js/docs/api/en/renderers/WebGLMultisampleRenderTarget.html",
     "./three.js/docs/api/en/renderers/WebGLRenderer.html",

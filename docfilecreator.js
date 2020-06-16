@@ -15,7 +15,8 @@ function getFiles (dir, files_){
     return files_;
 }
 
-fs.writeFileSync("files.json", JSON.stringify(getFiles("./three.js/docs/api/en"),null,4));
+fs.writeFileSync("docfiles.json", JSON.stringify(getFiles("./three.js/docs/api/en"),null,4));
+fs.writeFileSync("srcfiles.json", JSON.stringify(getFiles("./three.js/src"),null,4));
 
 
 var threejsfile = fs.readFileSync("./three.js/src/Three.js","utf8");
