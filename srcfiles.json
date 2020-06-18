@@ -521,6 +521,7 @@
     "./three.js/src/renderers/webgl/WebGLAttributes.js",
     "./three.js/src/renderers/webgl/WebGLBackground.d.ts",
     "./three.js/src/renderers/webgl/WebGLBackground.js",
+    "./three.js/src/renderers/webgl/WebGLBindingStates.js",
     "./three.js/src/renderers/webgl/WebGLBufferRenderer.d.ts",
     "./three.js/src/renderers/webgl/WebGLBufferRenderer.js",
     "./three.js/src/renderers/webgl/WebGLCapabilities.d.ts",
